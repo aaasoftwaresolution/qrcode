@@ -1,0 +1,38 @@
+.overflow{
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    max-width: 680px;
+   
+}
+
+@media only screen and (max-width: 474px){
+    .overflow{
+    overflow-x: auto;
+   
+
+    scroll-behavior: smooth;
+    
+    max-width: 480px;
+    max-width: 400px;
+    min-width: 300px;}
+}
+.overflow::-webkit-scrollbar {
+    display: none;
+  }
+  .card-text{
+    font-size: 12px;
+    font-weight: 500;
+
+    
+  }
+  .horizontal-image{
+    width: 150px;
+    height: 100px;
+  }
+  .name-box{
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    align-items: center;
+  }
+  

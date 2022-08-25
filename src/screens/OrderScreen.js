@@ -105,7 +105,7 @@ export default function OrderScreen() {
             </div>
           </form>
         </div>
-        <Link to={"/delivery"}>
+        <Link to={"/delivery"} useCart={useCart}>
           <div className="footer1">
             <div className=" fixed-bottom p-3">
               <div className="d-flex justify-content-center">

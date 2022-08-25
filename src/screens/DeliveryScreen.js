@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CartProvider, useCart } from 'react-use-cart';
 import "../styles/horizontal.css";
-import TimePicker from "rc-time-picker";
+
 import "rc-time-picker/assets/index.css";
 import moment from "moment";
+import TimePicker from 'react-time-picker';
 
 export default function DeliveryScreen(props) {
   const [show, setShow] = useState(false);
+  const [delivery, setDelivery] = useState(false);
+  const [dinein, setDinein] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [value, onChange] = useState('10:00');
   const {
     isEmpty,
     cartTotal,
@@ -16,6 +20,7 @@ export default function DeliveryScreen(props) {
     items,
     metadata,
     setCartMetadata,
+    updateCartMetadata,
     updateItemQuantity,
     removeItem,
   } = props.useCart();
@@ -32,7 +37,7 @@ export default function DeliveryScreen(props) {
     setDispatchTime(value);
     console.log("value" + value);
     
-      setCartMetadata({"Pickup Time":value})
+    updateCartMetadata({"Pickup Time":value})
   };
   // console.log(items);
 
@@ -47,28 +52,30 @@ console.log('here',JSON.stringify(val));
     <div>
       <div className="container2">
         <h5 class="font-color p-3 text-center">Order Type</h5>
+        
         <div className="container2">
+          
           <div className="order1 col-12 col-sm-12 col-lg-12 col-md-12">
             <div class="card curve shadow p-0 mb-0 bg-white rounded ">
               <div class="card-body ">
                 <div className="container">
-                  <div className="row">
+                  
+                  <div className="row ">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="card curve shadow p-0 mb-0 bg-white rounded ">
                         <div class="card-body height1">
                           <div class="form-check d-flex justify-content-center">
                             <input
-                              class="form-check-input"
-                              type="radio"
-                              value=""
-                              id="flexCheckDefault"
-                              
+                              class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                              onClick={() => setDelivery((prev) => !prev)} 
+                              style={{padding:"10px"}}
                               
                             />
                             <label
                             class="form-check-label p-1 font-color"
                             for="flexCheckDefault "
                             style={{fontSize:"13px",fontWeight:"700"}}
+                           
                             >
                               Delivery
                             </label>
@@ -111,7 +118,38 @@ console.log('here',JSON.stringify(val));
                         </div>
                       </div>
                     </div>
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <div class="card curve2 shadow p-0 mb-0 bg-white rounded ">
+                        <div class="card-body height1">
+                          <div class="form-check d-flex justify-content-center">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              value=""
+                              id="flexCheckDefault"
+                              onClick={() => setDinein((prev) => !prev)} 
+                              style={{padding:"10px"}}
+
+                            />
+                            <label
+                              class="form-check-label p-1 font-color"
+                              for="flexCheckDefault "
+                              style={{fontSize:"13px",fontWeight:"700"}}
+                            >
+                              Dine-In
+                            </label>
+                          </div>
+                          
+                        </div>
+
+                        <div className="d-flex justify-content-center p-3">
+                          <div className="text-center font-color" style={{fontSize:"15px"}}>To get your order on your Table</div>
+                          <div className=""></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -119,6 +157,12 @@ console.log('here',JSON.stringify(val));
         </div>
         {show && (
           <h5 class="font-color1 p-3 text-left">Select pickup time :</h5>
+        )}
+         {delivery && (
+          <h5 class="font-color1 p-3 text-left">Please enter your Address :</h5>
+        )}
+         {dinein && (
+          <h5 class="font-color1 p-3 text-left">Please enter your Table number :</h5>
         )}
 
         <div className="order1 col-12 col-sm-12 col-lg-12 col-md-12">
@@ -132,42 +176,55 @@ console.log('here',JSON.stringify(val));
                     class="row flex-nowrap overflow d-flex justify-content-center mb-5"
                     onClick={handleClick}
                   >
-                    {/* <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text" id="10" onClick={(e)=>{
-      setCartMetadata({"Pickup Time":e.target.id})}}>pizzadfsdfsdf</p>
-                    </div>
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">Burger</p>
-                    </div>
-
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">Drinks</p>
-                    </div>
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">pizza</p>
-                    </div>
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">Drinks</p>
-                    </div>
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">pizza</p>
-                    </div>
-                    <div class="col-4 col-lg-2 col-sm-2 col-md-2">
-                      <p class="card-text">pizza</p>
-                    </div> */}
+{/*                    
                     <TimePicker
         value={dispatchTime}
         onChange={handleValueChange}
         showSecond={false}
         allowEmpty
-      />
+      /> */}
+      <TimePicker onChange={handleValueChange} value={value} />
                   </div>
                 </div>
               )}
+               {delivery && (
+                 <form>
+                 <div class="form-group p-1">
+                   <label for="exampleFormControlTextarea1" className="p-3"></label>
+                   <textarea
+                     class="form-control"
+                     id="exampleFormControlTextarea1"
+                     placeholder="You Can Add Your Address here"
+                     onChange={(e) => {
+                      updateCartMetadata({deliveryAddress: e.target.value });
+                     }}
+                     rows="3"
+                   ></textarea>
+                 </div>
+               </form>
+               )}
+               {dinein && (
+                 <form>
+                 <div class="form-group p-1">
+                   <label for="exampleFormControlTextarea1" className="p-3"></label>
+                   <textarea
+                     class="form-control"
+                     id="exampleFormControlTextarea1"
+                     placeholder="You Can Add Your Table number"
+                     type="number"
+                     onChange={(e) => {
+                      updateCartMetadata({tablenumber: e.target.value });
+                     }}
+                     rows="3"
+                   ></textarea>
+                 </div>
+               </form>
+               )}
+             
 
               {/* horizontal time card end  */}
             </div>
-            <div class="card curve shadow p-0 mb-0 bg-white rounded ">
+            <div class="card curve shadow p-0 mb-0 bg-white rounded pb-5">
               <div className="d-flex justify-content-between p-3">
                 <div className="font-color" style={{fontWeight:"600"}}>Net Total :</div>
                 <div className="font-color" style={{fontWeight:"800"}}>{cartTotal}SR/-</div>

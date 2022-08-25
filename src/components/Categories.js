@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
+import { Link } from 'react-router-dom';
 import FoodItemsSmall from './FoodItemsSmall';
 import HorizontCards from './HorizontalCard';
 
@@ -14,8 +15,9 @@ export default function Categories(props) {
         <Card className="text-center">
           <Card.Header>
             <div className="d-flex justify-content-between">
-              
+              <Link to={"/admin"}>
             <i class="fa-regular fa-clock fa-2x p-2 font-color" data-aos="fade-right"></i>
+            </Link>
             <div>
             <i class="fa-brands fa-snapchat-square fa-2x p-2"></i>
             <i class="fa-brands fa-instagram-square fa-2x p-2 "></i>

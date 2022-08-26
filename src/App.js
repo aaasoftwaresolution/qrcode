@@ -1,10 +1,9 @@
 import './App.css';
 import {
   Route,
-  Link,
+ 
   Routes,
-  useParams,
-  BrowserRouter,
+  
 } from "react-router-dom";
 
 import HomeScreen from './screens/HomeScreen';

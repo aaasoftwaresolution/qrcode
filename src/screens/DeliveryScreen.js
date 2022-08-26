@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { CartProvider, useCart } from 'react-use-cart';
+
 import "../styles/horizontal.css";
 
 import "rc-time-picker/assets/index.css";
@@ -8,21 +7,21 @@ import moment from "moment";
 import TimePicker from 'react-time-picker';
 
 export default function DeliveryScreen(props) {
-  const [show, setShow] = useState(false);
-  const [delivery, setDelivery] = useState(false);
-  const [dinein, setDinein] = useState(false);
+
   const [isActive, setIsActive] = useState(false);
   const [value, onChange] = useState('10:00');
+  const [ordertype, setOrdertype] = useState("");
+
+
   const {
-    isEmpty,
+   
     cartTotal,
     totalUniqueItems,
     items,
     metadata,
-    setCartMetadata,
+   
     updateCartMetadata,
-    updateItemQuantity,
-    removeItem,
+   
   } = props.useCart();
   const handleClick = () => {
     // 👇️ toggle
@@ -40,14 +39,19 @@ export default function DeliveryScreen(props) {
     updateCartMetadata({"Pickup Time":value})
   };
   // console.log(items);
-
-var val = [{metadata:metadata},{total_qty:totalUniqueItems},{total_amount:cartTotal}];
-items.forEach(el =>{
-   var item = {"name":el.name,"price":el.price,"quantity":el.quantity}
-   val.push(item)
-});
-console.log('here',JSON.stringify(val));
-  var myOtherUrl =  "https://wa.me/+918129602660?text=" + encodeURI(JSON.stringify(val));
+  var val = [{"Order Details":metadata , total_qty:totalUniqueItems,total_amount:cartTotal}];
+  items.forEach(el =>{
+     var item = {name : el.name+"------", price:el.price, quantity:el.quantity}
+     val.push(item)
+  });
+  
+  function clog(obj)
+  {
+      const varToString = Object.keys(obj)[0];
+      console.log(varToString + " = " + obj[varToString])
+  }
+  // console.log('here',JSON.stringify(val).replace(/[{}]/g, '-------'));
+    var myOtherUrl =  "https://wa.me/+918129602660?text=" + encodeURI(JSON.stringify(val).replace(/[{}]/g, '--------'));
   return (
     <div>
       <div className="container2">
@@ -66,8 +70,8 @@ console.log('here',JSON.stringify(val));
                         <div class="card-body height1">
                           <div class="form-check d-flex justify-content-center">
                             <input
-                              class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                              onClick={() => setDelivery((prev) => !prev)} 
+                              type="radio" id="yes" name="choose" value="Delivery"
+                              onClick={() => {setOrdertype("delivery")} } 
                               style={{padding:"10px"}}
                               
                             />
@@ -93,11 +97,8 @@ console.log('here',JSON.stringify(val));
                         <div class="card-body height1">
                           <div class="form-check d-flex justify-content-center">
                             <input
-                              class="form-check-input"
-                              type="radio"
-                              value=""
-                              id="flexCheckDefault"
-                              onClick={() => setShow((prev) => !prev)} 
+                             type="radio" id="yes" name="choose" value="Pickup"
+                              onClick={() => {setOrdertype("pickup")} } 
                               style={{padding:"10px"}}
 
                             />
@@ -123,11 +124,8 @@ console.log('here',JSON.stringify(val));
                         <div class="card-body height1">
                           <div class="form-check d-flex justify-content-center">
                             <input
-                              class="form-check-input"
-                              type="radio"
-                              value=""
-                              id="flexCheckDefault"
-                              onClick={() => setDinein((prev) => !prev)} 
+                             type="radio" id="yes" name="choose" value="Dine-In"
+                             onClick={() => {setOrdertype("dine-in")} } 
                               style={{padding:"10px"}}
 
                             />
@@ -155,13 +153,13 @@ console.log('here',JSON.stringify(val));
             </div>
           </div>
         </div>
-        {show && (
+        {ordertype==="pickup"  && (
           <h5 class="font-color1 p-3 text-left">Select pickup time :</h5>
         )}
-         {delivery && (
+         {ordertype==="delivery" && (
           <h5 class="font-color1 p-3 text-left">Please enter your Address :</h5>
         )}
-         {dinein && (
+         {ordertype==="dine-in" && (
           <h5 class="font-color1 p-3 text-left">Please enter your Table number :</h5>
         )}
 
@@ -170,7 +168,7 @@ console.log('here',JSON.stringify(val));
             <div class="card-body ">
               {/* horizontal time card  */}
 
-              {show && (
+              {ordertype==="pickup" && (
                 <div class="card curve shadow p-0 mb-0 bg-white rounded ">
                   <div
                     class="row flex-nowrap overflow d-flex justify-content-center mb-5"
@@ -187,7 +185,7 @@ console.log('here',JSON.stringify(val));
                   </div>
                 </div>
               )}
-               {delivery && (
+               {ordertype==="delivery" && (
                  <form>
                  <div class="form-group p-1">
                    <label for="exampleFormControlTextarea1" className="p-3"></label>
@@ -203,7 +201,7 @@ console.log('here',JSON.stringify(val));
                  </div>
                </form>
                )}
-               {dinein && (
+               {ordertype==="dine-in" && (
                  <form>
                  <div class="form-group p-1">
                    <label for="exampleFormControlTextarea1" className="p-3"></label>
@@ -211,6 +209,7 @@ console.log('here',JSON.stringify(val));
                      class="form-control"
                      id="exampleFormControlTextarea1"
                      placeholder="You Can Add Your Table number"
+                     required
                      type="number"
                      onChange={(e) => {
                       updateCartMetadata({tablenumber: e.target.value });

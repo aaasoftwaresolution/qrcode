@@ -5,9 +5,10 @@ import "../styles/horizontal.css";
 import "rc-time-picker/assets/index.css";
 import moment from "moment";
 import TimePicker from 'react-time-picker';
+import { useTranslation } from "react-i18next";
 
 export default function DeliveryScreen(props) {
-
+  const { t } = useTranslation ( );
   const [isActive, setIsActive] = useState(false);
   const [value, onChange] = useState('10:00');
   const [ordertype, setOrdertype] = useState("");
@@ -55,7 +56,7 @@ export default function DeliveryScreen(props) {
   return (
     <div>
       <div className="container2">
-        <h5 class="font-color p-3 text-center">Order Type</h5>
+        <h5 class="font-color p-3 text-center">{t("Order type")}</h5>
         
         <div className="container2">
           

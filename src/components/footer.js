@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Footer(props) {
-
+const t= props.t ;
   const {
     isEmpty
   } = props.useCart;
@@ -15,7 +15,7 @@ export default function Footer(props) {
       <div className='footer1'>
       <div className=' fixed-bottom p-3'>
             <div  className='d-flex justify-content-center'>
-            <div className='footer-color content-footer'>My Order List / Next</div> 
+            <div className='footer-color content-footer'>{t('My Order List / Next')} </div> 
             </div>
         </div>
       </div>

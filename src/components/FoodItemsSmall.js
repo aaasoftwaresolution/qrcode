@@ -6,6 +6,7 @@ import FoodItemList from "./FoodItemList";
 export default function FoodItemsSmall(props) {
  
   const foods = props.foods;
+//  console.log(props.foods);
 
   return (
     <>
@@ -15,12 +16,24 @@ export default function FoodItemsSmall(props) {
 
      return(
       <>
+     {/* { console.log(props.foods)}
+     { console.log(cat)} */}
       <Card.Title className="heading-color p-3 scrollspy-example" data-spy="scroll" data-target="#navbar-example2" data-offset="0" id={`${cat.catnameeng}`} data-aos="fade-down">{cat.catnameeng}</Card.Title> 
       {/* <FoodItemList  food={food}/> */}
-      {props.foods.filter(food => food.category_id === cat.id).map(food_items => (
+      {props.foods.filter(food => food.cat_id === parseInt(cat.id)).map(food_items => (
+        
        <div>
+       {/* { console.log('hello',food_items)} */}
           {/* {filteredPerson.name} */}
-          <FoodItemList useCart={props.useCart} food={food_items}/>
+         { food_items.subcategory ? food_items.subcategory.map((items) =>{
+          return(
+            <>
+               <FoodItemList useCart={props.useCart} food={items}/>
+            </>
+          );
+         }) : ""
+        }
+         
        </div>
       ))}
 

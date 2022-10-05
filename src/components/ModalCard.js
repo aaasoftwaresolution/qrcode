@@ -13,7 +13,8 @@ export default function ModalCard(props) {
   const handleShow = () => setShow(true);
 
   const food = props.food;
-  const alreadyAdded = props.inCart(food.id);
+  console.log('items', props.items);
+  const alreadyAdded = props.inCart(parseInt(food.pro_id));
  
 
   const item_inc = () => {
@@ -22,9 +23,10 @@ export default function ModalCard(props) {
     <h5 class="modal-header1 justify-content-center font-modal text-center p-1 mt-3 mb-3 ">
     Choose quantity
   </h5>
-         {props.items.filter(person => person.id === food.id).map((item) => (
+         {props.items.filter(person => person.id === parseInt(food.pro_id)).map((item) => (
      
   <div className="d-flex justify-content-center">
+   
     <div className="col-12 d-flex justify-content-center" key={item.id}>
       <button
         className="button-five m-2"
@@ -50,6 +52,9 @@ export default function ModalCard(props) {
  
     }
 
+     const demo123 = {id:parseInt(food.pro_id),name:food.pro_english,price:food.pro_price};
+    console.log('hiii', demo123);
+
   return (
     <div className="d-flex justify-content-center">
       {/* <CartProvider> */}
@@ -62,15 +67,15 @@ export default function ModalCard(props) {
                 </Modal.Header>
               </div>
 
-              <img className ="img-rounded modal-img" src={food.image} alt="Card image cap"/>
+              <img className ="img-rounded modal-img" src={food.pro_image} alt="Card image cap"/>
 
               <div class="card-body p-0 overflow-auto scroll" style={{height:"375px"}}>
                 <h5 class="modal-header justify-content-center font-modal text-center p-1 mt-2 mb-3">
-                  {food.name}
+                  {food.pro_english}
                 </h5>
 
                 <p class="card-text card-details1 text-left p-3 m-1">
-                  {food.description}
+                  {food.pro_des}
                 </p>
                 {alreadyAdded ?  item_inc() :  "" }
                 {/* {console.log(props.items)} */}
@@ -85,9 +90,9 @@ export default function ModalCard(props) {
                  </ul> */}
 
                 </>
-             
+
                 <div className="button-block justify-content-center p-3">
-                  <div className="btn-block pt-5" onClick={()=>{props.addItem(food)}} typeof="button" >
+                  <div className="btn-block pt-5" onClick={()=>{props.addItem(parseInt(demo123),1)}} typeof="button" >
                  
                       <div className="button-colors icon-btn elevation-0 icon-text-btn v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default">
                     

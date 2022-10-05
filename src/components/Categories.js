@@ -1,12 +1,16 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import FoodItemsSmall from './FoodItemsSmall';
 import HorizontCards from './HorizontalCard';
 
 
 
+
 export default function Categories(props) {
+  const { t } = useTranslation ( )
+
   return (
     <div className="container2">
       
@@ -29,11 +33,11 @@ export default function Categories(props) {
           </Card.Header>
         
           <Card.Body>
-            <Card.Title className=" heading-color p-3">Categories</Card.Title>
+            <Card.Title className=" heading-color p-3">{t('Categories')}</Card.Title>
             <div class="container-fluid">
            <HorizontCards categories = {props.categories} />
            </div>
-          
+        
            <FoodItemsSmall useCart={props.useCart} categories = {props.categories} foods = {props.foods}/>
             
           </Card.Body>

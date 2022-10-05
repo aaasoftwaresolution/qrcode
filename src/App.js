@@ -5,6 +5,7 @@ import {
   Routes,
   
 } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import HomeScreen from './screens/HomeScreen';
 import bootstrap from "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -17,10 +18,14 @@ import axios from 'axios';
 import AOS from 'aos';
 import DeliveryScreen from './screens/DeliveryScreen';
 import ChartScreen from './screens/ChartScreen';
+import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
 
 
 
 export default function App() {
+  const { t } = useTranslation();
+
   const [loading, setLoading] = useState(true);
   const spinner = document.getElementById("spinner");
   if (spinner) {
@@ -38,15 +43,15 @@ export default function App() {
     .then(res => {
    const category = res.data.data;
        setCategories(category);
-      // console.log('axios console cat',categories);
+      console.log('axios console cat',categories);
     })
   }
   const fetchFoods = () => {
-    axios.get(`https://qrorder.aaasoftwaresolution.com/api/all_items`)
+    axios.get(`https://qrorder.aaasoftwaresolution.com/api/alldata`)
      .then(res => {
     const category = res.data.data;
        setFood(category);
-      //  console.log('axios console food',foods);
+       console.log('axios console food',foods);
      })
    }
     useEffect(() => {
@@ -70,10 +75,13 @@ export default function App() {
     
     <CartProvider>
      <Routes>
-          <Route path="*" element={<HomeScreen useCart={useCart} categories = {categories} foods = {foods} />} />
+     <Route path="*" element={<LoginScreen />} />
+     <Route path="/signup" element={<SignupScreen />} />
+          <Route path="/home" element={<HomeScreen useCart={useCart} categories = {categories} foods = {foods} />} />
           <Route path="/orders" element={<OrderScreen useCart={useCart} />} />
           <Route path="/delivery"  element={<DeliveryScreen useCart={useCart}/>}/>
           <Route path="/admin"  element={<ChartScreen  useCart={useCart}/>}/>
+
         </Routes>
         
     </CartProvider>

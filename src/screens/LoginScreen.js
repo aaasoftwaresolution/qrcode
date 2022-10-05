@@ -13,10 +13,10 @@ export default function LoginScreen() {
         const user = JSON.parse(localStorage.getItem('user-info'));
     
         if (user.success === true){
-            alert("welcome ")
+            alert("welcome")
             navigate( "/home" );
         }else{
-            alert("user not found");
+            console.log("user not found");
         }
     },[])
    

@@ -111,8 +111,8 @@ export default function DeliveryScreen(props) {
       <div className="container2">
         <h5 class="font-color p-3 text-center">{t("Order type")}</h5>
         <img
-          className=" image3"
-          src="images/logout.png"
+          className=" image3 img-style2"
+          src="https://img.icons8.com/fluency/344/exit.png"
           alt="restauran"
           onClick={logout}
         />

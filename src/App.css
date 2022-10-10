@@ -78,6 +78,14 @@
 color: 
 #535e79;
 }
+.img-style{
+  width: 450px;
+  height: 303px;
+}
+.img-style2{
+  width: 48px;
+  height: 48px;
+}
 .card-image{
   align-items: center;
   border-radius: 10%;

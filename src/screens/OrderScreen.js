@@ -39,8 +39,8 @@ export default function OrderScreen() {
               <h5 class="font-color  p-3 text-center">{t("My Orders")}</h5>
             </div>
             <img
-              className=" image3"
-              src="images/logout.png"
+              className=" image3 img-style2"
+              src="https://img.icons8.com/fluency/344/exit.png"
               alt="restauran"
               onClick={logout}
             />

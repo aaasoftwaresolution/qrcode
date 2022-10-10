@@ -14,12 +14,12 @@ export default function Header() {
       >
         <img
           className="img-fluid"
-          src="./images/header2.jpg"
+          src="header2.jpg"
           alt="restaurant bg"
         />
         <img
           className=" image2"
-          src="./images/logout.png"
+          src="logout.png"
           alt="restauran"
           onClick={logout}
         />

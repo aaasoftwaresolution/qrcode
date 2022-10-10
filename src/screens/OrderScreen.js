@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/order.css";
 import { CartProvider, useCart } from "react-use-cart";
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 export default function OrderScreen() {
-  const { t } = useTranslation ( );
+  const { t } = useTranslation();
   const {
     isEmpty,
     cartTotal,
@@ -18,34 +17,33 @@ export default function OrderScreen() {
     removeItem,
   } = useCart();
 
-
   function logout() {
     localStorage.clear();
-    window.location.href = '/';
-}
+    window.location.href = "/qrcode";
+  }
   return (
     <>
       <CartProvider>
         <div className="container2">
           <div className="">
-           
-              <div className="col-1 d-flex justify-content-start" style={{position:"absolute"}}>
+            <div
+              className="col-1 d-flex justify-content-start"
+              style={{ position: "absolute" }}
+            >
               <Link to={"/"}>
                 <i class="fa  fa-arrow-left  p-3 font-color"></i>
-                </Link>
-              </div>
-            
+              </Link>
+            </div>
 
             <div className="col-11 d-flex justify-content-center">
               <h5 class="font-color  p-3 text-center">{t("My Orders")}</h5>
-
             </div>
             <img
-          className=" image3"
-          src="images/logout.png"
-          alt="restauran"
-          onClick={logout}
-        />
+              className=" image3"
+              src="images/logout.png"
+              alt="restauran"
+              onClick={logout}
+            />
           </div>
           <div className="order1 col-12 col-sm-12 col-lg-12 col-md-12">
             <div class="card curve shadow p-0 mb-0 bg-white rounded ">
@@ -99,7 +97,9 @@ export default function OrderScreen() {
               <div class="card curve shadow p-0 mb-0 bg-white rounded ">
                 <div className="d-flex justify-content-between p-3">
                   <div className="">{t("Total")}</div>
-                  <div className="font-color" style={{fontWeight:"800"}}>{cartTotal}SR /-</div>
+                  <div className="font-color" style={{ fontWeight: "800" }}>
+                    {cartTotal}SR /-
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,11 +108,13 @@ export default function OrderScreen() {
         <div className="container2">
           <form>
             <div class="form-group p-1">
-              <label for="exampleFormControlTextarea1" className="p-3">{t("Notes")}</label>
+              <label for="exampleFormControlTextarea1" className="p-3">
+                {t("Notes")}
+              </label>
               <textarea
                 class="form-control"
                 id="exampleFormControlTextarea1"
-                placeholder= {t("You Can Add Your Notes Here")}
+                placeholder={t("You Can Add Your Notes Here")}
                 onChange={(e) => {
                   setCartMetadata({ Notes: e.target.value });
                 }}

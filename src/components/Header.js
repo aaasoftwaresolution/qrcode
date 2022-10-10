@@ -4,17 +4,20 @@ import "../styles/logout.css";
 export default function Header() {
   function logout() {
     localStorage.clear();
-    window.location.href = '/';
-}
+    window.location.href = "/qrcode";
+  }
   return (
     <div>
-      <div className="container2 d-flex justify-content-center" data-aos="zoom-in">
+      <div
+        className="container2 d-flex justify-content-center"
+        data-aos="zoom-in"
+      >
         <img
           className="img-fluid"
           src="images/header2.jpg"
           alt="restaurant bg"
         />
-         <img
+        <img
           className=" image2"
           src="images/logout.png"
           alt="restauran"

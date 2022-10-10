@@ -7,6 +7,7 @@ import Navigation from '../components/Navigation'
 import { useTranslation } from 'react-i18next';
 
 export default function HomeScreen(props) {
+ 
   const { t } = useTranslation ( )
   return (
     <div>

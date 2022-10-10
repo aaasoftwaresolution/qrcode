@@ -34,23 +34,23 @@ export default function FoodItemList(props) {
      <div className="col-12 col-sm-10 p-2 font-color">
       {/* {console.log(food.subcategory)} */}
         <div class="card curve shadow p-0 mb-0 bg-white rounded" onClick={handleShow} data-aos="fade-up">
-          <div class="card-body " id={food.pro_id} >
+          <div class="card-body " id={food.id} >
             <div className="row" >
               <div className="col-3 ">
-                <img className="card-image" src={food.pro_image}  alt="pic" />
+                <img className="card-image" src={food.image}  alt="pic" />
               </div>
               
               <div className="col-9 ">
-                <div className="prize-label button-colors  ">{food.pro_price}
+                <div className="prize-label button-colors  ">{food.price}
                   <div className="currency">S.R</div>
                 </div>
 
                 <h5 class="card-title font-size card-heading text-left">
-                  {food.pro_english}
+                  {food.english}
                 </h5>
                 
                 <p class="card-details  p-0 m-0 text-left">
-                {food.pro_des}
+                {food.des}
                 </p>
               </div>
             </div>

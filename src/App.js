@@ -39,7 +39,7 @@ export default function App() {
   const [foods, setFood] = useState([]);
 
   const fetchFoodCats = () => {
-   axios.get(`https://qrorder.aaasoftwaresolution.com/api/category`)
+   axios.get(`https://qrorder.itrends.in/api/category`)
     .then(res => {
    const category = res.data.data;
        setCategories(category);
@@ -47,7 +47,7 @@ export default function App() {
     })
   }
   const fetchFoods = () => {
-    axios.get(`https://qrorder.aaasoftwaresolution.com/api/alldata`)
+    axios.get(`https://qrorder.itrends.in/api/alldata`)
      .then(res => {
     const category = res.data.data;
        setFood(category);
@@ -91,3 +91,4 @@ export default function App() {
 
 }
 // "homepage":"https://zandeepsanand.github.io/v-4-foodmenu",
+// "homepage": "https://aaasoftwaresolution.github.io/qrcode",

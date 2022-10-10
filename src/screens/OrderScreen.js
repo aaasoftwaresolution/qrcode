@@ -17,6 +17,12 @@ export default function OrderScreen() {
     updateItemQuantity,
     removeItem,
   } = useCart();
+
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = '/';
+}
   return (
     <>
       <CartProvider>
@@ -32,7 +38,14 @@ export default function OrderScreen() {
 
             <div className="col-11 d-flex justify-content-center">
               <h5 class="font-color  p-3 text-center">{t("My Orders")}</h5>
+
             </div>
+            <img
+          className=" image3"
+          src="images/logout.png"
+          alt="restauran"
+          onClick={logout}
+        />
           </div>
           <div className="order1 col-12 col-sm-12 col-lg-12 col-md-12">
             <div class="card curve shadow p-0 mb-0 bg-white rounded ">
@@ -42,7 +55,7 @@ export default function OrderScreen() {
                     <>
                       <div className="col-6 ">
                         <div className="order-font text-start ">
-                          {item.name}
+                          {item.english}
                         </div>
                       </div>
 

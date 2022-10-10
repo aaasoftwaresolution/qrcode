@@ -4,6 +4,13 @@
     max-width: 680px;
    
 }
+.image3 {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  cursor: pointer;
+  /* border: 1px green solid; */
+}
 
 @media only screen and (max-width: 474px){
     .overflow{

@@ -75,7 +75,7 @@ export default function App() {
     
     <CartProvider>
      <Routes>
-     <Route path="/" element={<LoginScreen />} />
+     <Route path="*" element={<LoginScreen />} />
      <Route path="/signup" element={<SignupScreen />} />
           <Route path="/home" element={<HomeScreen useCart={useCart} categories = {categories} foods = {foods} />} />
           <Route path="/orders" element={<OrderScreen useCart={useCart} />} />

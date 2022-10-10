@@ -104,7 +104,7 @@ export default function DeliveryScreen(props) {
   };
   function logout() {
     localStorage.clear();
-    window.location.href = "/qrcode";
+    window.location.href = "/";
   }
   return (
     <div>

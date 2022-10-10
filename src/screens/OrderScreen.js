@@ -19,7 +19,7 @@ export default function OrderScreen() {
 
   function logout() {
     localStorage.clear();
-    window.location.href = "/qrcode";
+    window.location.href = "/";
   }
   return (
     <>

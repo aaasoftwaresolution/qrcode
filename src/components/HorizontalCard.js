@@ -24,7 +24,8 @@ export default function HorizontCards(props) {
                     </div>
                     <a class="link" href={`#${card.catnameeng}`}>
                  
-              <img  style={{ "width":"70px", "height":"70px" }} className="card-img-top horizontal-image pb-2" src={card.cat_image} alt="Card image cap" />
+              <img  style={{ "width":"70px", "height":"70px" }} className="card-img-top horizontal-image pb-2"
+               src={card.file} alt="Card image cap" />
                     
                     </a>
                     </div>
